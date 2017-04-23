@@ -51,7 +51,7 @@ public abstract class BaseScrollableFragment<E extends BaseEntity> extends BaseF
         View view = super.onCreateView(inflater, container, savedInstanceState);
         recyclerView = this.getRecyclerView(view);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(this.getActivity(), 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(this.getActivity(), this.getSpanCount()));
         recyclerView.setAdapter(getAdapter());
 
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.fragment_feed_swipe_refresh_layout);
@@ -129,6 +129,7 @@ public abstract class BaseScrollableFragment<E extends BaseEntity> extends BaseF
         });
     }
 
+    // TODO 外だし
     protected RecyclerView.Adapter getAdapter() {
 
         return new RecyclerView.Adapter<RecyclerView.ViewHolder>() {
